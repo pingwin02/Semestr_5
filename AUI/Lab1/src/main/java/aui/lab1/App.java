@@ -74,7 +74,7 @@ public class App {
         System.out.println("Ex 4");
         packages.stream()
                 .filter(p -> p.getWeight() > 20)
-                .sorted(Comparator.comparing(Package::getName))
+                .sorted()
                 .forEach(System.out::println);
 
         // Ex 5
@@ -85,7 +85,7 @@ public class App {
                         .weight(p.getWeight())
                         .warehouseName(p.getWarehouse().getName())
                         .build())
-                .sorted(Comparator.comparing(PackageDTO::getName))
+                .sorted()
                 .collect(Collectors.toList());
 
         packageDTOs.forEach(System.out::println);

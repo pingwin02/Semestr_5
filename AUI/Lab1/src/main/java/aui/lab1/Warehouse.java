@@ -9,15 +9,10 @@ import lombok.*;
 @Getter
 @Builder
 @AllArgsConstructor
-public class Warehouse implements Serializable {
+public class Warehouse implements Serializable, Comparable<Warehouse> {
     String name;
     int capacity;
     List<Package> packages;
-
-    public Warehouse(String name, int capacity) {
-        this.name = name;
-        this.capacity = capacity;
-    }
 
     public void addPackage(Package p) {
         if (packages == null) {
@@ -51,6 +46,11 @@ public class Warehouse implements Serializable {
         Warehouse w = (Warehouse) o;
         return name.equals(w.name) &&
                 capacity == w.capacity;
+    }
+
+    @Override
+    public int compareTo(Warehouse o) {
+        return this.name.compareTo(o.getName());
     }
 
 }

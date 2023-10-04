@@ -6,16 +6,10 @@ import lombok.*;
 
 @Getter
 @Builder
-public class Package implements Serializable {
+public class Package implements Serializable, Comparable<Package> {
     String name;
     int weight;
     Warehouse warehouse;
-
-    public Package(String name, int weight, Warehouse warehouse) {
-        this.name = name;
-        this.weight = weight;
-        this.warehouse = warehouse;
-    }
 
     @Override
     public String toString() {
@@ -40,5 +34,8 @@ public class Package implements Serializable {
                 weight == p.weight;
     }
 
-
+    @Override
+    public int compareTo(Package o) {
+        return this.name.compareTo(o.getName());
+    }
 }

@@ -4,16 +4,10 @@ import lombok.*;
 
 @Getter
 @Builder
-public class PackageDTO {
+public class PackageDTO implements Comparable<PackageDTO> {
     String name;
     int weight;
     String warehouseName;
-
-    public PackageDTO(String name, int weight, String warehouseName) {
-        this.name = name;
-        this.weight = weight;
-        this.warehouseName = warehouseName;
-    }
 
     @Override
     public String toString() {
@@ -22,4 +16,8 @@ public class PackageDTO {
                 ", warehouseName=" + warehouseName + "]";
     }
 
+    @Override
+    public int compareTo(PackageDTO o) {
+        return this.name.compareTo(o.getName());
+    }
 }
