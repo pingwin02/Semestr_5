@@ -14,13 +14,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Warehouse {
+public class Warehouse implements Comparable<Warehouse> {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(unique = true)
     private String name;
 
     private int capacity;
@@ -29,4 +26,8 @@ public class Warehouse {
     @ToString.Exclude
     private List<Package> packages;
 
+    @Override
+    public int compareTo(Warehouse o) {
+        return this.name.compareTo(o.name);
+    }
 }

@@ -13,10 +13,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class Package {
+public class Package implements Comparable<Package> {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
     private String name;
@@ -26,4 +24,9 @@ public class Package {
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
+
+    @Override
+    public int compareTo(Package o) {
+        return this.name.compareTo(o.name);
+    }
 }

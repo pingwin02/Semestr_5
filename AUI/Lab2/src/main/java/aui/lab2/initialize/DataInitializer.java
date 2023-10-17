@@ -8,6 +8,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class DataInitializer implements InitializingBean {
     private final WarehouseService warehouseService;
@@ -23,34 +25,40 @@ public class DataInitializer implements InitializingBean {
     public void afterPropertiesSet() {
 
         Warehouse w1 = Warehouse.builder()
+                .id(UUID.randomUUID())
                 .name("Amazon")
                 .capacity(50)
                 .build();
 
         Warehouse w2 = Warehouse.builder()
+                .id(UUID.randomUUID())
                 .name("Allegro")
                 .capacity(80)
                 .build();
 
         Package p1 = Package.builder()
+                .id(UUID.randomUUID())
                 .name("smartphone")
                 .weight(10)
                 .warehouse(w1)
                 .build();
 
         Package p2 = Package.builder()
+                .id(UUID.randomUUID())
                 .name("vacuum cleaner")
                 .weight(20)
                 .warehouse(w1)
                 .build();
 
         Package p3 = Package.builder()
+                .id(UUID.randomUUID())
                 .name("tv")
                 .weight(30)
                 .warehouse(w2)
                 .build();
 
         Package p4 = Package.builder()
+                .id(UUID.randomUUID())
                 .name("dishwasher")
                 .weight(40)
                 .warehouse(w2)

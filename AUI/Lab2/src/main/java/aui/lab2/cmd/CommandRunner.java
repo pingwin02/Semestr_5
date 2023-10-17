@@ -51,6 +51,7 @@ public class CommandRunner implements CommandLineRunner {
                         String warehouse = scanner.nextLine();
 
                         Package packageItem = Package.builder()
+                                .id(UUID.randomUUID())
                                 .name(name)
                                 .weight(Integer.parseInt(weight))
                                 .warehouse(warehouseService
