@@ -26,10 +26,6 @@ public class WarehouseService {
         return warehouseRepository.findById(id);
     }
 
-    public Optional<Warehouse> getWarehousesByName(String name) {
-        return warehouseRepository.findByName(name);
-    }
-
     public void saveWarehouse(Warehouse warehouse) {
         warehouseRepository.save(warehouse);
     }

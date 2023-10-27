@@ -10,5 +10,4 @@ import java.util.UUID;
 @Repository
 public interface WarehouseRepository extends JpaRepository<Warehouse, UUID> {
 
-    Optional<Warehouse> findByName(String name);
 }

@@ -27,10 +27,6 @@ public class PackageService {
         return packageRepository.findById(id);
     }
 
-    public List<Package> getPackagesByWarehouse(Warehouse warehouse) {
-        return packageRepository.findByWarehouse(warehouse);
-    }
-
     public void savePackage(Package packageItem) {
         packageRepository.save(packageItem);
     }

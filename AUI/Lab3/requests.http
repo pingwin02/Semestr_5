@@ -1,0 +1,109 @@
+### Get All Database
+GET http://localhost:8080/
+Accept: application/json
+
+### Get All Warehouses
+GET http://localhost:8080/warehouses
+Accept: application/json
+
+### Get Warehouse by Id
+GET http://localhost:8080/warehouses/123e4567-e89b-12d3-a456-426614174000
+Accept: application/json
+
+### Create Warehouse
+POST http://localhost:8080/warehouses
+Content-Type: application/json
+
+{
+  "name": "Ebay",
+  "capacity": 1000
+}
+
+### See changes in database
+
+GET http://localhost:8080/warehouses
+Accept: application/json
+
+### Get Packages by Warehouse Id
+
+GET http://localhost:8080/warehouses/654e3210-9bca-32d1-ba56-499602026999/packages
+Accept: application/json
+
+### Get Packages by Warehouse Id (empty)
+// EBAY_ID = 8e6f33bf-cc21-413a-893b-72035c5cecf5
+GET http://localhost:8080/warehouses/8e6f33bf-cc21-413a-893b-72035c5cecf5/packages
+Accept: application/json
+
+### Get Packages by Warehouse Id (not found)
+
+GET http://localhost:8080/warehouses/00000000-0000-0000-0000-000000000000/packages
+Accept: application/json
+
+### Update Warehouse
+PUT http://localhost:8080/warehouses/654e3210-9bca-32d1-ba56-499602026999
+Content-Type: application/json
+
+{
+  "name": "Allegretto",
+  "capacity": 2000
+}
+
+### See changes in database
+
+GET http://localhost:8080/
+Accept: application/json
+
+### Delete Warehouse
+DELETE http://localhost:8080/warehouses/654e3210-9bca-32d1-ba56-499602026999
+Accept: application/json
+
+### Get All Products
+GET http://localhost:8080/packages
+Accept: application/json
+
+### Get Product by Id
+GET http://localhost:8080/packages/87daf4f4-7fca-4b76-8f93-2ced3252131e
+Accept: application/json
+
+### Create Product
+POST http://localhost:8080/packages
+Content-Type: application/json
+
+{
+  "name": "iPhone 12",
+  "weight": 5,
+  "warehouseId": "123e4567-e89b-12d3-a456-426614174000"
+}
+
+### See changes in database
+GET http://localhost:8080/
+Accept: application/json
+
+### Create Product (bad request)
+POST http://localhost:8080/packages
+Content-Type: application/json
+
+{
+  "name": "iPhone 12",
+  "weight": 5,
+  "warehouseId": "654e3210-9bca-32d1-ba56-499602026999"
+}
+
+### Update Product
+PUT http://localhost:8080/packages/951e7530-951e-951e-951e-951e7530951e
+Content-Type: application/json
+
+{
+  "name": "smartphone",
+  "weight": 15,
+  "warehouseId": "8e6f33bf-cc21-413a-893b-72035c5cecf5"
+}
+
+### See changes in database
+
+GET http://localhost:8080/
+Accept: application/json
+
+### Delete Product
+DELETE http://localhost:8080/packages/951e7530-951e-951e-951e-951e7530951e
+Accept: application/json

@@ -11,5 +11,4 @@ import java.util.UUID;
 @Repository
 public interface PackageRepository extends JpaRepository<Package, UUID> {
 
-    List<Package> findByWarehouse(Warehouse warehouse);
 }
