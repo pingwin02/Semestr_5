@@ -2,8 +2,8 @@ package aui.lab3.dto;
 
 import lombok.*;
 
-@Getter
 @Builder
+@Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor

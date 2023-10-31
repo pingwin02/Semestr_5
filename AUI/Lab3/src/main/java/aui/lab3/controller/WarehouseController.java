@@ -1,55 +1,57 @@
 package aui.lab3.controller;
 
-import aui.lab3.dto.PackageResponseDTO;
+import aui.lab3.dto.PackagesResponseDTO;
 import aui.lab3.dto.WarehouseRequestDTO;
 import aui.lab3.dto.WarehouseResponseDTO;
+import aui.lab3.dto.WarehousesResponseDTO;
 import aui.lab3.entity.Warehouse;
-import aui.lab3.function.PackageToResponse;
+import aui.lab3.function.PackagesToResponse;
 import aui.lab3.function.RequestToWarehouse;
 import aui.lab3.function.WarehouseToResponse;
+import aui.lab3.function.WarehousesToResponse;
 import aui.lab3.service.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/warehouses")
+@RequestMapping("/api/warehouses")
 public class WarehouseController {
 
     private final WarehouseService warehouseService;
 
     private final WarehouseToResponse warehouseToResponse;
 
-    private final PackageToResponse packageToResponse;
+    private final WarehousesToResponse warehousesToResponse;
+
+    private final PackagesToResponse packagesToResponse;
 
     private final RequestToWarehouse requestToWarehouse;
 
     @Autowired
     public WarehouseController(WarehouseService warehouseService,
                                WarehouseToResponse warehouseToResponse,
-                               PackageToResponse packageToResponse,
+                               WarehousesToResponse warehousesToResponse,
+                               PackagesToResponse packagesToResponse,
                                RequestToWarehouse requestToWarehouse
     ) {
         this.warehouseService = warehouseService;
         this.warehouseToResponse = warehouseToResponse;
-        this.packageToResponse = packageToResponse;
+        this.warehousesToResponse = warehousesToResponse;
+        this.packagesToResponse = packagesToResponse;
         this.requestToWarehouse = requestToWarehouse;
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<WarehouseResponseDTO> getWarehouses() {
-        return warehouseService.getAllWarehouses().stream()
-                .map(warehouseToResponse)
-                .collect(Collectors.toList());
+    public WarehousesResponseDTO getWarehouses() {
+        return warehousesToResponse.apply(warehouseService.getAllWarehouses());
     }
-
+    
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public WarehouseResponseDTO getWarehouseById(@PathVariable UUID id) {
@@ -63,12 +65,10 @@ public class WarehouseController {
 
     @GetMapping("/{id}/packages")
     @ResponseStatus(HttpStatus.OK)
-    public List<PackageResponseDTO> getPackagesByWarehouseId(@PathVariable UUID id) {
+    public PackagesResponseDTO getPackagesByWarehouseId(@PathVariable UUID id) {
         Optional<Warehouse> warehouseOptional = warehouseService.getWarehouseById(id);
         if (warehouseOptional.isPresent()) {
-            return warehouseOptional.get().getPackages().stream()
-                    .map(packageToResponse)
-                    .collect(Collectors.toList());
+            return packagesToResponse.apply(warehouseOptional.get().getPackages());
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

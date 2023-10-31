@@ -36,6 +36,12 @@ public class DataInitializer implements InitializingBean {
                 .capacity(80)
                 .build();
 
+        Warehouse w3 = Warehouse.builder()
+                .id(UUID.fromString("44e3210-9bca-32d1-ba56-499602026999"))
+                .name("AliExpress")
+                .capacity(120)
+                .build();
+
         Package p1 = Package.builder()
                 .id(UUID.fromString("951e7530-951e-951e-951e-951e7530951e"))
                 .name("smartphone")
@@ -66,6 +72,7 @@ public class DataInitializer implements InitializingBean {
 
         warehouseService.saveWarehouse(w1);
         warehouseService.saveWarehouse(w2);
+        warehouseService.saveWarehouse(w3);
 
         packageService.savePackage(p1);
         packageService.savePackage(p2);

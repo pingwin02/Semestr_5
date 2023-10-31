@@ -2,8 +2,10 @@ package aui.lab3.controller;
 
 import aui.lab3.dto.PackageRequestDTO;
 import aui.lab3.dto.PackageResponseDTO;
+import aui.lab3.dto.PackagesResponseDTO;
 import aui.lab3.entity.Package;
 import aui.lab3.function.PackageToResponse;
+import aui.lab3.function.PackagesToResponse;
 import aui.lab3.function.RequestToPackage;
 import aui.lab3.service.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,36 +13,36 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/packages")
+@RequestMapping("/api/packages")
 public class PackageController {
 
     private final PackageService packageService;
 
     private final PackageToResponse packageToResponse;
 
+    private final PackagesToResponse packagesToResponse;
+
     private final RequestToPackage requestToPackage;
 
     @Autowired
     public PackageController(PackageService packageService,
                              PackageToResponse packageToResponse,
+                             PackagesToResponse packagesToResponse,
                              RequestToPackage requestToPackage) {
         this.packageService = packageService;
         this.packageToResponse = packageToResponse;
+        this.packagesToResponse = packagesToResponse;
         this.requestToPackage = requestToPackage;
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<PackageResponseDTO> getPackages() {
-        return packageService.getAllPackages().stream()
-                .map(packageToResponse)
-                .collect(Collectors.toList());
+    public PackagesResponseDTO getPackages() {
+        return packagesToResponse.apply(packageService.getAllPackages());
     }
 
     @GetMapping("/{id}")
