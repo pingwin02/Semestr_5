@@ -18,10 +18,10 @@ public class WarehousesToResponse implements Function<Collection<Warehouse>, War
                         .map(warehouse -> WarehousesResponseDTO.WarehouseDTO.builder()
                                 .id(warehouse.getId())
                                 .name(warehouse.getName())
+                                .capacity(warehouse.getCapacity())
                                 .build())
                         .collect(Collectors.toList()))
                 .build();
     }
-
 
 }

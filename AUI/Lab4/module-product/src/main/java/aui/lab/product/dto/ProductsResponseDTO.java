@@ -1,4 +1,4 @@
-package aui.lab.dto;
+package aui.lab.product.dto;
 
 import lombok.*;
 
@@ -10,21 +10,22 @@ import java.util.UUID;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class WarehousesResponseDTO {
+public class ProductsResponseDTO {
 
     @Builder
     @Getter
     @ToString
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class WarehouseDTO {
+    public static class ProductDTO {
         private UUID id;
 
         private String name;
 
-        private int capacity;
+        private int weight;
+
+        private UUID warehouseId;
     }
 
-    Collection<WarehouseDTO> warehouses;
-
+    private Collection<ProductDTO> products;
 }

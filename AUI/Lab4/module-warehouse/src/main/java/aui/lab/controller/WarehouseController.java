@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -25,7 +24,6 @@ public class WarehouseController {
     private final WarehouseToResponse warehouseToResponse;
 
     private final WarehousesToResponse warehousesToResponse;
-
 
     private final RequestToWarehouse requestToWarehouse;
 
@@ -50,19 +48,15 @@ public class WarehouseController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public WarehouseResponseDTO getWarehouseById(@PathVariable UUID id) {
-        Optional<Warehouse> warehouseOptional = service.find(id);
-        if (warehouseOptional.isPresent()) {
-            return warehouseToResponse.apply(warehouseOptional.get());
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        return service.find(id)
+                .map(warehouseToResponse)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void saveWarehouse(@RequestBody WarehouseRequestDTO warehouseRequestDTO) {
-        Warehouse warehouse = requestToWarehouse.apply(warehouseRequestDTO);
-        service.create(warehouse);
+        service.create(requestToWarehouse.apply(warehouseRequestDTO));
     }
 
     @PutMapping("/{id}")
@@ -86,6 +80,5 @@ public class WarehouseController {
     public void deleteWarehouse(@PathVariable UUID id) {
         service.delete(id);
     }
-
 
 }

@@ -18,5 +18,4 @@ public class WarehouseToResponse implements Function<Warehouse, WarehouseRespons
                 .build();
     }
 
-
 }

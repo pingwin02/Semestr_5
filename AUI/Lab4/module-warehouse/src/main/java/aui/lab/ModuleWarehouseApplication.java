@@ -15,7 +15,7 @@ public class ModuleWarehouseApplication {
     }
 
     @Bean
-    public RestTemplate restTemplate(@Value("${lab.package.url}") String baseUrl) {
+    public RestTemplate restTemplate(@Value("${module.product.url}") String baseUrl) {
         return new RestTemplateBuilder().rootUri(baseUrl).build();
     }
 

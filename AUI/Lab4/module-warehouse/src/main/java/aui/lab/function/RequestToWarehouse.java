@@ -19,5 +19,4 @@ public class RequestToWarehouse implements Function<WarehouseRequestDTO, Warehou
                 .build();
     }
 
-
 }

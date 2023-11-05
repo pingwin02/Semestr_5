@@ -33,7 +33,7 @@ public class DataInitializer implements InitializingBean {
                 .build();
 
         Warehouse w3 = Warehouse.builder()
-                .id(UUID.fromString("44e3210-9bca-32d1-ba56-499602026999"))
+                .id(UUID.fromString("044e3210-9bca-32d1-ba56-499602026999"))
                 .name("AliExpress")
                 .capacity(120)
                 .build();
