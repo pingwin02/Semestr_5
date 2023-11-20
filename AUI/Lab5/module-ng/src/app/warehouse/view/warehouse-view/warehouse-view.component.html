@@ -1,0 +1,15 @@
+<article *ngIf="warehouse">
+  <header><h2>{{warehouse.name}}</h2></header>
+
+  <div class="container">
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <p>ID: <strong>{{warehouse.id}}</strong></p>
+          <p>Name: <strong>{{warehouse.name}}</strong></p>
+          <p>Capacity: <strong>{{warehouse.capacity}}</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

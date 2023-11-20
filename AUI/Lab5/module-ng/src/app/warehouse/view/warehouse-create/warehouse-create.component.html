@@ -1,0 +1,28 @@
+<article *ngIf="warehouse">
+  <header><h2>Create warehouse</h2></header>
+
+  <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" [(ngModel)]="warehouse.name"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4 p-2">
+        <div>
+          <label for="name">Capacity</label>
+          <input id="capacity" name="capacity" [(ngModel)]="warehouse.capacity"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-2 p-2">
+        <button type="submit">Create</button>
+      </div>
+    </div>
+  </form>
+</article>

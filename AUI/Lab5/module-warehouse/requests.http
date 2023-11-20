@@ -1,0 +1,27 @@
+### Get All Warehouses
+GET http://localhost:8082/api/warehouses
+
+### Get Warehouse by Id
+GET http://localhost:8082/api/warehouses/123e4567-e89b-12d3-a456-426614174000
+
+### Create Warehouse
+POST http://localhost:8082/api/warehouses
+Content-Type: application/json
+
+{
+  "name": "Ebay",
+  "capacity": 1000
+}
+
+
+### Update Warehouse
+PUT http://localhost:8082/api/warehouses/654e3210-9bca-32d1-ba56-499602026999
+Content-Type: application/json
+
+{
+  "name": "Allegretto",
+  "capacity": 2000
+}
+
+### Delete Warehouse
+DELETE http://localhost:8082/api/warehouses/123e4567-e89b-12d3-a456-426614174000

@@ -4,3 +4,7 @@ mvnw.cmd
 .idea
 target
 *.bin
+node_modules
+package-lock.json
+.angular
+.vscode
