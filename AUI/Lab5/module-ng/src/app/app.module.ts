@@ -13,6 +13,9 @@ import { WarehouseViewComponent } from './warehouse/view/warehouse-view/warehous
 import { WarehouseEditComponent } from './warehouse/view/warehouse-edit/warehouse-edit.component';
 import { WarehouseCreateComponent } from './warehouse/view/warehouse-create/warehouse-create.component';
 import { WarehouseListComponent } from './warehouse/view/warehouse-list/warehouse-list.component';
+import { ProductViewComponent } from './product/view/product-view/product-view.component';
+import { ProductEditComponent } from './product/view/product-edit/product-edit.component';
+import { ProductCreateComponent } from './product/view/product-create/product-create.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { WarehouseListComponent } from './warehouse/view/warehouse-list/warehous
     NavComponent,
     WarehouseViewComponent,
     WarehouseEditComponent,
-    WarehouseCreateComponent
+    WarehouseCreateComponent,
+    ProductViewComponent,
+    ProductEditComponent,
+    ProductCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -35,4 +41,5 @@ import { WarehouseListComponent } from './warehouse/view/warehouse-list/warehous
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

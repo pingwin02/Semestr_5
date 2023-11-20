@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { WarehouseService } from "../../service/warehouse.service";
 import { Router } from '@angular/router';
+import { WarehouseService } from "../../service/warehouse.service";
 import { WarehouseForm } from "../../model/warehouse-form";
 
 @Component({

@@ -2,7 +2,7 @@ export interface ProductForm {
 
   name: string;
 
-  price: number;
+  weight: number;
 
   warehouseId: string;
 }

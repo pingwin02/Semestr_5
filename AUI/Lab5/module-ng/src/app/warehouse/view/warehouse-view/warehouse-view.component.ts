@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { WarehouseService } from "../../service/warehouse.service";
 import { WarehouseDetails } from "../../model/warehouse-details";
 import { Products } from "../../../product/model/products";
@@ -16,7 +16,6 @@ export class WarehouseViewComponent implements OnInit {
   constructor(private service: WarehouseService,
               private productService: ProductService,
               private route: ActivatedRoute,
-              private router: Router,
   ) {
   }
 
@@ -38,10 +37,8 @@ export class WarehouseViewComponent implements OnInit {
   }
 
   onProductDelete(product: Product): void {
-    if (confirm("Are you sure to delete " + product.name)) {
-      this.productService.deleteProduct(product.id).subscribe(() => {
-        this.ngOnInit();
-      });
-    }
+    this.productService.deleteProduct(product.id).subscribe(() => {
+      this.ngOnInit();
+    });
   }
 }

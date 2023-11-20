@@ -1,23 +1,19 @@
 <article *ngIf="warehouse">
   <header><h2>{{warehouse.name}}</h2></header>
 
-  <p>
-    <a [routerLink]="['/products', 'create']">Create new product</a>
-  </p>
-
   <div class="container">
     <div class="row">
-      <div class="card">
-        <div class="card-body">
-          <p>ID: <strong>{{warehouse.id}}</strong></p>
-          <p>Name: <strong>{{warehouse.name}}</strong></p>
-          <p>Capacity: <strong>{{warehouse.capacity}}</strong></p>
-        </div>
-      </div>
-      <div class="card-body" *ngIf="products">
-        <h4>Products</h4>
+      <p>ID: <strong>{{warehouse.id}}</strong></p>
+      <p>Name: <strong>{{warehouse.name}}</strong></p>
+      <p>Capacity: <strong>{{warehouse.capacity}}</strong></p>
+      <p>
+        <a [routerLink]="['/warehouse', warehouse.id, 'product', 'create']">Create product</a>
+      </p>
+      <div *ngIf="products">
+        <h4 *ngIf="products.products.length === 0">No products in this warehouse</h4>
+        <h4 *ngIf="products.products.length > 0">Products</h4>
         <table>
-          <thead>
+          <thead *ngIf="products.products.length > 0">
           <tr>
             <th>Name</th>
             <th>View</th>
@@ -29,10 +25,10 @@
           <tr *ngFor="let product of products.products">
             <td>{{product.name}}</td>
             <td>
-              <a [routerLink]="['/products', product.id]">View</a>
+              <a [routerLink]="['/warehouse', warehouse.id, 'product', product.id]">View</a>
             </td>
             <td>
-              <a [routerLink]="['/products', product.id, 'edit']">Edit</a>
+              <a [routerLink]="['/warehouse', warehouse.id, 'product', product.id, 'edit']">Edit</a>
             </td>
             <td>
               <button (click)="onProductDelete(product)">Delete</button>

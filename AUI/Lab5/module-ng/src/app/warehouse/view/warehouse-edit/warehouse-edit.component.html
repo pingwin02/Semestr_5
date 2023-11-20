@@ -3,29 +3,19 @@
 
   <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="row">
-      <div class="col-4 p-2">
-        <div>
-          <label for="name">Name</label>
-          <input id="name" name="name" [(ngModel)]="warehouse.name"/>
-        </div>
+      <div>
+        <label for="name">Name: </label>
+        <input id="name" name="name" [(ngModel)]="warehouse.name"/>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-4 p-2">
-        <div>
-          <label for="name">Capacity</label>
-          <input id="capacity" name="capacity" [(ngModel)]="warehouse.capacity"/>
-        </div>
+      <div>
+        <label for="name">Capacity: </label>
+        <input id="capacity" name="capacity" [(ngModel)]="warehouse.capacity"/>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-2 p-2">
-        <button type="submit">Update</button>
-      </div>
-      <div class="col-2 p-2">
-        <button type="button" (click)="form.resetForm(original)">Reset</button>
-      </div>
+      <button type="submit">Update</button>
+      <button type="button" (click)="form.resetForm(original)">Reset</button>
     </div>
   </form>
 </article>

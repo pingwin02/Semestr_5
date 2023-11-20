@@ -1,5 +1,5 @@
 <article>
-  <header><h2>Create warehouse</h2></header>
+  <header><h2>Create product</h2></header>
 
   <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
     <div class="row">
@@ -8,8 +8,13 @@
         <input id="name" name="name" [(ngModel)]="name"/>
       </div>
       <div>
-        <label for="name">Capacity: </label>
-        <input id="capacity" name="capacity" [(ngModel)]="capacity"/>
+        <label for="name">Weight: </label>
+        <input id="weight" name="weight" [(ngModel)]="weight"/>
+      </div>
+      <div>
+        <label for="name">Warehouse: </label>
+        <input type="radio" name="warehouse" [value]="warehouseId" [(ngModel)]="warehouseId"/>
+        <label>{{warehouseId}}</label>
       </div>
     </div>
 

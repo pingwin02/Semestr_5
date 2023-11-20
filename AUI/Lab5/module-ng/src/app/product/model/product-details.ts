@@ -4,7 +4,7 @@ export interface ProductDetails {
 
   name: string;
 
-  price: number;
+  weight: number;
 
   warehouseId: string;
 }

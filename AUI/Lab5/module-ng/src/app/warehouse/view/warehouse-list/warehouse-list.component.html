@@ -2,31 +2,31 @@
   <header><h2>Warehouses</h2></header>
 
   <p>
-    <a [routerLink]="['/warehouses', 'create']">Create new warehouse</a>
+    <a [routerLink]="['/warehouse', 'create']">Create warehouse</a>
   </p>
 
   <table *ngIf="warehouses">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>View</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
+    <thead *ngIf="warehouses.warehouses.length > 0">
+    <tr>
+      <th>Name</th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let warehouse of warehouses.warehouses">
-        <td>{{warehouse.name}}</td>
-        <td>
-          <a [routerLink]="['/warehouses', warehouse.id]">View</a>
-        </td>
-        <td>
-          <a [routerLink]="['/warehouses', warehouse.id, 'edit']">Edit</a>
-        </td>
-        <td>
-          <button (click)="onDelete(warehouse)">Delete</button>
-        </td>
-      </tr>
+    <tr *ngFor="let warehouse of warehouses.warehouses">
+      <td>{{warehouse.name}}</td>
+      <td>
+        <a [routerLink]="['/warehouse', warehouse.id]">View</a>
+      </td>
+      <td>
+        <a [routerLink]="['/warehouse', warehouse.id, 'edit']">Edit</a>
+      </td>
+      <td>
+        <button (click)="onDelete(warehouse)">Delete</button>
+      </td>
+    </tr>
     </tbody>
   </table>
 </article>

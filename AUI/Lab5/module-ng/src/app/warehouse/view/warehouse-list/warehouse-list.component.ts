@@ -19,11 +19,9 @@ export class WarehouseListComponent implements OnInit {
   }
 
   onDelete(warehouse: Warehouse): void {
-    if (confirm("Are you sure to delete " + warehouse.name)) {
-      this.service.deleteWarehouse(warehouse.id).subscribe(() => {
-        this.ngOnInit();
-      });
-    }
+    this.service.deleteWarehouse(warehouse.id).subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
 }

@@ -4,6 +4,10 @@ import { WarehouseListComponent } from "./warehouse/view/warehouse-list/warehous
 import { WarehouseViewComponent } from "./warehouse/view/warehouse-view/warehouse-view.component";
 import { WarehouseEditComponent } from "./warehouse/view/warehouse-edit/warehouse-edit.component";
 import { WarehouseCreateComponent } from "./warehouse/view/warehouse-create/warehouse-create.component";
+import { ProductViewComponent } from "./product/view/product-view/product-view.component";
+import { ProductEditComponent } from "./product/view/product-edit/product-edit.component";
+import { ProductCreateComponent } from "./product/view/product-create/product-create.component";
+
 
 const routes: Routes = [
   {
@@ -12,15 +16,32 @@ const routes: Routes = [
   },
   {
     component: WarehouseCreateComponent,
-    path: "warehouses/create",
+    path: "warehouse/create",
   },
   {
     component: WarehouseEditComponent,
-    path: "warehouses/:uuid/edit",
+    path: "warehouse/:uuid/edit",
   },
   {
     component: WarehouseViewComponent,
-    path: "warehouses/:uuid",
+    path: "warehouse/:uuid",
+  },
+  {
+    component: ProductCreateComponent,
+    path: "warehouse/:uuid/product/create",
+  },
+  {
+    component: ProductViewComponent,
+    path: "warehouse/:uuid/product/:id",
+  },
+  {
+    component: ProductEditComponent,
+    path: "warehouse/:uuid/product/:id/edit",
+  },
+  {
+    path: "",
+    redirectTo: "/warehouses",
+    pathMatch: "full",
   },
 ];
 
