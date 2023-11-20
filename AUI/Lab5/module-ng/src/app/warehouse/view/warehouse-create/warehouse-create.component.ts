@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { WarehouseService } from "../../service/warehouse.service";
 import { Router } from '@angular/router';
 import { WarehouseForm } from "../../model/warehouse-form";
@@ -8,7 +8,7 @@ import { WarehouseForm } from "../../model/warehouse-form";
   templateUrl: './warehouse-create.component.html',
   styleUrls: ['./warehouse-create.component.css']
 })
-export class WarehouseCreateComponent implements OnInit {
+export class WarehouseCreateComponent {
 
   constructor(
     private service: WarehouseService,
@@ -16,19 +16,18 @@ export class WarehouseCreateComponent implements OnInit {
   ) {
   }
 
-  warehouse: WarehouseForm | undefined;
+  name: string | undefined;
 
-  ngOnInit(): void {
-    this.warehouse = {
-      name: 'Warehouse name',
-      capacity: 100
-    };
-  }
+  capacity: number | undefined;
 
   onSubmit(): void {
-    this.service.createWarehouse(this.warehouse!).subscribe(() =>
+    let warehouse: WarehouseForm = {
+      name: this.name!,
+      capacity: this.capacity!
+    };
+
+    this.service.createWarehouse(warehouse).subscribe(() =>
       this.router.navigate(['/warehouses']));
   }
-
 
 }

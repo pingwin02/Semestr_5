@@ -1,6 +1,10 @@
 <article *ngIf="warehouse">
   <header><h2>{{warehouse.name}}</h2></header>
 
+  <p>
+    <a [routerLink]="['/products', 'create']">Create new product</a>
+  </p>
+
   <div class="container">
     <div class="row">
       <div class="card">
@@ -9,6 +13,33 @@
           <p>Name: <strong>{{warehouse.name}}</strong></p>
           <p>Capacity: <strong>{{warehouse.capacity}}</strong></p>
         </div>
+      </div>
+      <div class="card-body" *ngIf="products">
+        <h4>Products</h4>
+        <table>
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let product of products.products">
+            <td>{{product.name}}</td>
+            <td>
+              <a [routerLink]="['/products', product.id]">View</a>
+            </td>
+            <td>
+              <a [routerLink]="['/products', product.id, 'edit']">Edit</a>
+            </td>
+            <td>
+              <button (click)="onProductDelete(product)">Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
