@@ -27,6 +27,12 @@ services:
       context: ./module-product
       dockerfile: Dockerfile
     restart: always
+    environment: 
+        SPRING_DATASOURCE_URL: jdbc:postgresql://database-product:5432/product_db
+        SPRING_DATASOURCE_USERNAME: product_user
+        SPRING_DATASOURCE_PASSWORD: product_password
+        SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
+        SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
   module-warehouse:
     container_name: module-warehouse
     build:
@@ -34,4 +40,32 @@ services:
       dockerfile: Dockerfile
     environment: 
         MODULE_PRODUCT_URL: http://module-product:8080
+        SPRING_DATASOURCE_URL: jdbc:postgresql://database-warehouse:5432/warehouse_db
+        SPRING_DATASOURCE_USERNAME: warehouse_user
+        SPRING_DATASOURCE_PASSWORD: warehouse_password
+        SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
+        SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
     restart: always
+  database-product:
+    container_name: database_product
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_DB: product_db
+      POSTGRES_USER: product_user
+      POSTGRES_PASSWORD: product_password
+    volumes:
+      - database-product:/var/lib/postgresql/data
+  database-warehouse:
+    container_name: database_warehouse
+    image: postgres:16.1
+    restart: always
+    environment:
+      POSTGRES_DB: warehouse_db
+      POSTGRES_USER: warehouse_user
+      POSTGRES_PASSWORD: warehouse_password
+    volumes:
+      - database-warehouse:/var/lib/postgresql/data
+volumes:
+  database-product:
+  database-warehouse:
