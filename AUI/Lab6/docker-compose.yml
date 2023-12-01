@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  module-ng:
+    container_name: module-ng
+    build:
+      context: ./module-ng
+      dockerfile: Dockerfile
+    restart: always
+    environment: 
+        API_URL: http://module-gateway:8080/api
+    ports:
+      - 8087:80
+  module-gateway:
+    container_name: module-gateway
+    build:
+      context: ./module-gateway
+      dockerfile: Dockerfile
+    restart: always
+    environment: 
+        MODULE_PRODUCT_URL: http://module-product:8080
+        MODULE_WAREHOUSE_URL: http://module-warehouse:8080
+        MODULE_GATEWAY_HOST: module-gateway:8080
+  module-product:
+    container_name: module-product
+    build:
+      context: ./module-product
+      dockerfile: Dockerfile
+    restart: always
+  module-warehouse:
+    container_name: module-warehouse
+    build:
+      context: ./module-warehouse
+      dockerfile: Dockerfile
+    environment: 
+        MODULE_PRODUCT_URL: http://module-product:8080
+    restart: always

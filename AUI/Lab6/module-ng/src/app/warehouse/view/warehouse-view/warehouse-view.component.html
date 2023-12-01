@@ -1,0 +1,42 @@
+<article *ngIf="warehouse">
+  <header><h2>{{warehouse.name}}</h2></header>
+
+  <div class="container">
+    <div class="row">
+      <p>ID: <strong>{{warehouse.id}}</strong></p>
+      <p>Name: <strong>{{warehouse.name}}</strong></p>
+      <p>Capacity: <strong>{{warehouse.capacity}}</strong></p>
+      <p>
+        <a [routerLink]="['/warehouse', warehouse.id, 'product', 'create']">Create product</a>
+      </p>
+      <div *ngIf="products">
+        <h4 *ngIf="products.products.length === 0">No products in this warehouse</h4>
+        <h4 *ngIf="products.products.length > 0">Products</h4>
+        <table>
+          <thead *ngIf="products.products.length > 0">
+          <tr>
+            <th>Name</th>
+            <th>View</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let product of products.products">
+            <td>{{product.name}}</td>
+            <td>
+              <a [routerLink]="['/warehouse', warehouse.id, 'product', product.id]">View</a>
+            </td>
+            <td>
+              <a [routerLink]="['/warehouse', warehouse.id, 'product', product.id, 'edit']">Edit</a>
+            </td>
+            <td>
+              <button (click)="onProductDelete(product)">Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</article>

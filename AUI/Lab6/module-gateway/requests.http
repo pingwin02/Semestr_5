@@ -1,0 +1,64 @@
+### Get Warehouses
+GET http://localhost:8084/api/warehouses
+
+### Get Warehouse
+GET http://localhost:8084/api/warehouses/123e4567-e89b-12d3-a456-426614174000
+
+### Get Warehouse products
+GET http://localhost:8084/api/warehouses/123e4567-e89b-12d3-a456-426614174000/products
+
+### Get empty Warehouse products
+GET http://localhost:8084/api/warehouses/044e3210-9bca-32d1-ba56-499602026999/products
+
+### Get Products
+GET http://localhost:8084/api/products
+
+### Get Product
+GET http://localhost:8084/api/products/951e7530-951e-951e-951e-951e7530951e
+
+### Create Product
+POST http://localhost:8084/api/products
+Content-Type: application/json
+
+{
+  "name": "lamp",
+  "weight": 110,
+  "warehouseId": "123e4567-e89b-12d3-a456-426614174000"
+}
+
+### Edit Product
+PUT http://localhost:8084/api/products/951e7530-951e-951e-951e-951e7530951e
+Content-Type: application/json
+
+{
+  "name": "iPhone 12",
+  "weight": 0.5,
+  "warehouseId": "044e3210-9bca-32d1-ba56-499602026999"
+}
+
+### Delete Product
+DELETE http://localhost:8084/api/products/951e7530-951e-951e-951e-951e7530951e
+
+### Create Warehouse
+POST http://localhost:8084/api/warehouses
+Content-Type: application/json
+
+{
+  "name": "Ebay",
+  "capacity": 1000
+}
+
+### Edit Warehouse
+PUT http://localhost:8084/api/warehouses/654e3210-9bca-32d1-ba56-499602026999
+Content-Type: application/json
+
+{
+  "name": "Allegretto",
+  "capacity": 123
+}
+
+### Delete Warehouse
+DELETE http://localhost:8084/api/warehouses/654e3210-9bca-32d1-ba56-499602026999
+
+### Get deleted warehouse products
+GET http://localhost:8084/api/warehouses/654e3210-9bca-32d1-ba56-499602026999/products
