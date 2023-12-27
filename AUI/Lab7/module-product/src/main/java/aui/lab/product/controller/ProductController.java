@@ -1,5 +1,6 @@
 package aui.lab.product.controller;
 
+import lombok.extern.java.Log;
 import aui.lab.product.dto.ProductRequestDTO;
 import aui.lab.product.dto.ProductResponseDTO;
 import aui.lab.product.dto.ProductsResponseDTO;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.UUID;
+import java.util.logging.Level;
 
 @RestController
+@Log
 public class ProductController {
 
     private final ProductService service;
@@ -40,6 +43,7 @@ public class ProductController {
     @GetMapping("/api/products")
     @ResponseStatus(HttpStatus.OK)
     public ProductsResponseDTO getProducts() {
+        log.log(Level.INFO, "getProducts");
         return productsToResponse.apply(service.findAll());
     }
 
