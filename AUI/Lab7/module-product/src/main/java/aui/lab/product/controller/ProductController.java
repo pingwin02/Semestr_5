@@ -50,6 +50,7 @@ public class ProductController {
     @GetMapping("/api/products/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ProductResponseDTO getProductById(@PathVariable UUID id) {
+        log.log(Level.INFO, "getProductById");
         return service.find(id)
                 .map(productToResponse)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -58,6 +59,7 @@ public class ProductController {
     @GetMapping("/api/warehouses/{id}/products")
     @ResponseStatus(HttpStatus.OK)
     public ProductsResponseDTO getProductsByWarehouse(@PathVariable UUID id) {
+        log.log(Level.INFO, "getProductsByWarehouse");
         return service.findAllByWarehouse(id)
                 .map(productsToResponse)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -66,6 +68,7 @@ public class ProductController {
     @PostMapping("/api/products")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveProduct(@RequestBody ProductRequestDTO productRequestDTO) {
+        log.log(Level.INFO, "saveProduct");
         Product product = requestToProduct.apply(productRequestDTO);
         try {
             service.create(product);
@@ -77,6 +80,7 @@ public class ProductController {
     @PutMapping("/api/products/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateProduct(@PathVariable UUID id, @RequestBody ProductRequestDTO productRequestDTO) {
+        log.log(Level.INFO, "updateProduct");
         Product product = requestToProduct.apply(productRequestDTO);
         service.find(id).ifPresentOrElse(
                 (Product productToUpdate) -> {
@@ -98,6 +102,7 @@ public class ProductController {
     @DeleteMapping("/api/products/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteProduct(@PathVariable UUID id) {
+        log.log(Level.INFO, "deleteProduct");
         service.delete(id);
     }
 
