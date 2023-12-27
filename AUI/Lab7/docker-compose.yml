@@ -21,6 +21,17 @@ services:
       POSTGRES_PASSWORD: warehouse_password
     volumes:
       - database-warehouse:/var/lib/postgresql/data
+  module-config:
+    container_name: module-config
+    build:
+      context: ./module-config
+      dockerfile: Dockerfile
+    restart: always
+    environment: 
+        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://module-eureka:8080/eureka
+        SPRING_CLOUD_CONFIG_SERVER_NATIVE_SEARCH_LOCATIONS: file:/var/module-config/configuration
+    volumes:
+      - ./configuration:/var/module-config/configuration
   module-eureka:
     container_name: module-eureka
     build:
@@ -46,7 +57,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     environment: 
-        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://module-eureka:8080/eureka"
+        SPRING_CONFIG_IMPORT: configserver:http://module-config:8080
         MODULE_GATEWAY_HOST: module-gateway:8080
   module-product-1:
     container_name: module-product-1
@@ -55,13 +66,8 @@ services:
       dockerfile: Dockerfile
     restart: always
     environment: 
-        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://module-eureka:8080/eureka"
         EUREKA_INSTANCE_ID: 1
-        SPRING_DATASOURCE_URL: jdbc:postgresql://database-product:5432/product_db
-        SPRING_DATASOURCE_USERNAME: product_user
-        SPRING_DATASOURCE_PASSWORD: product_password
-        SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
-        SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+        SPRING_CONFIG_IMPORT: configserver:http://module-config:8080
   module-product-2:
     container_name: module-product-2
     build:
@@ -69,25 +75,15 @@ services:
       dockerfile: Dockerfile
     restart: always
     environment: 
-        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://module-eureka:8080/eureka"
         EUREKA_INSTANCE_ID: 2
-        SPRING_DATASOURCE_URL: jdbc:postgresql://database-product:5432/product_db
-        SPRING_DATASOURCE_USERNAME: product_user
-        SPRING_DATASOURCE_PASSWORD: product_password
-        SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
-        SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+        SPRING_CONFIG_IMPORT: configserver:http://module-config:8080
   module-warehouse:
     container_name: module-warehouse
     build:
       context: ./module-warehouse
       dockerfile: Dockerfile
     environment: 
-        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://module-eureka:8080/eureka"
-        SPRING_DATASOURCE_URL: jdbc:postgresql://database-warehouse:5432/warehouse_db
-        SPRING_DATASOURCE_USERNAME: warehouse_user
-        SPRING_DATASOURCE_PASSWORD: warehouse_password
-        SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
-        SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+        SPRING_CONFIG_IMPORT: configserver:http://module-config:8080
     restart: always
 volumes:
   database-product:
