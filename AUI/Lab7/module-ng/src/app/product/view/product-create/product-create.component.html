@@ -1,0 +1,25 @@
+<article>
+  <header><h2>Create product</h2></header>
+
+  <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div>
+        <label for="name">Name: </label>
+        <input id="name" name="name" [(ngModel)]="name"/>
+      </div>
+      <div>
+        <label for="name">Weight: </label>
+        <input id="weight" name="weight" [(ngModel)]="weight"/>
+      </div>
+      <div>
+        <label for="name">Warehouse: </label>
+        <input type="radio" name="warehouse" [value]="warehouseId" [(ngModel)]="warehouseId"/>
+        <label>{{warehouseId}}</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <button type="submit">Create</button>
+    </div>
+  </form>
+</article>

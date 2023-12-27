@@ -1,0 +1,21 @@
+<article *ngIf="warehouse">
+  <header><h2>Edit warehouse</h2></header>
+
+  <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div>
+        <label for="name">Name: </label>
+        <input id="name" name="name" [(ngModel)]="warehouse.name"/>
+      </div>
+      <div>
+        <label for="name">Capacity: </label>
+        <input id="capacity" name="capacity" [(ngModel)]="warehouse.capacity"/>
+      </div>
+    </div>
+
+    <div class="row">
+      <button type="submit">Update</button>
+      <button type="button" (click)="form.resetForm(original)">Reset</button>
+    </div>
+  </form>
+</article>

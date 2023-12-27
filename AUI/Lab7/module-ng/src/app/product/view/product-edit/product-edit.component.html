@@ -1,0 +1,28 @@
+<article *ngIf="product">
+  <header><h2>Edit product</h2></header>
+
+  <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div>
+        <label for="name">Name: </label>
+        <input id="name" name="name" [(ngModel)]="product.name"/>
+      </div>
+      <div>
+        <label for="name">Weight: </label>
+        <input id="weight" name="weight" [(ngModel)]="product.weight"/>
+      </div>
+      <div *ngIf="warehouses">
+        <label for="name">Warehouse: </label>
+        <div *ngFor="let warehouse of warehouses.warehouses">
+          <input type="radio" name="warehouse" [value]="warehouse.id" [(ngModel)]="product.warehouseId"/>
+          <label>{{warehouse.name}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <button type="submit">Update</button>
+      <button type="button" (click)="form.resetForm(original)">Reset</button>
+    </div>
+  </form>
+</article>
