@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>OpenLayers Map</title>
+
+    <!-- The openlayers script -->
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script type="text/javascript">
+      var lon = 18.64542;
+      var lat = 54.34766;
+      var zoom = 5;
+      var map;
+      var mercator = new OpenLayers.Projection("EPSG:900913");
+      var wgs84 = new OpenLayers.Projection("EPSG:4326");
+      var apiKey =
+        "ApTJzdkyN1DdFKkRAE6QIDtzihNaf6IWJsT-nQ_2eMoO4PN__0Tzhl2-WgJtXFSp";
+      var options = { projection: mercator };
+
+      function init() {
+        map = new OpenLayers.Map("map", options);
+
+        var osm = new OpenLayers.Layer.OSM("Simple OSM Map");
+
+        var bing_road = new OpenLayers.Layer.Bing({
+          name: "Bing Road",
+          key: apiKey,
+          type: "Road",
+        });
+        var bing_aerial = new OpenLayers.Layer.Bing({
+          name: "Bing Aerial",
+          key: apiKey,
+          type: "Aerial",
+        });
+        var bing_aerial_with_labels = new OpenLayers.Layer.Bing({
+          name: "Bing Aerial with Labels",
+          key: apiKey,
+          type: "AerialWithLabels",
+        });
+
+        map.addLayers([osm, bing_road, bing_aerial, bing_aerial_with_labels]);
+        map.zoomIn();
+
+        map.addControl(new OpenLayers.Control.LayerSwitcher());
+        map.addControl(new OpenLayers.Control.PanZoomBar());
+        map.addControl(new OpenLayers.Control.ScaleLine());
+        map.addControl(new OpenLayers.Control.OverviewMap());
+        map.addControl(new OpenLayers.Control.KeyboardDefaults());
+        map.addControl(
+          new OpenLayers.Control.MousePosition({
+            displayProjection: wgs84,
+          })
+        );
+
+        var wmsLayer = new OpenLayers.Layer.WMS(
+          "WMS Layer",
+          "http://ksg.eti.pg.gda.pl/geoserver/gis/wms",
+          {
+            layers: "2014_07_25_Baltic_Cyano",
+            transparent: true,
+          },
+          { isBaseLayer: false }
+        );
+        map.addLayer(wmsLayer);
+        wmsLayer.setOpacity(0.5);
+
+        var vectors = new OpenLayers.Layer.Vector("Vector Layer");
+        map.addLayer(vectors);
+        var editingToolbar = new OpenLayers.Control.EditingToolbar(vectors);
+        map.addControl(editingToolbar);
+
+        var point = new OpenLayers.Geometry.Point(lon, lat).transform(
+          wgs84,
+          mercator
+        );
+        var pointFeature = new OpenLayers.Feature.Vector(point);
+        vectors.addFeatures([pointFeature]);
+
+        var citiesLayer = new OpenLayers.Layer.Markers("Cities Layer");
+        map.addLayer(citiesLayer);
+
+        var gdansk = new OpenLayers.LonLat(18.64542, 54.34766).transform(
+          wgs84,
+          mercator
+        );
+        var markerGdansk = new OpenLayers.Marker(gdansk);
+        citiesLayer.addMarker(markerGdansk);
+
+        var markerNewYork = new OpenLayers.Marker(
+          new OpenLayers.LonLat(-74.006, 40.7128).transform(wgs84, mercator)
+        );
+        citiesLayer.addMarker(markerNewYork);
+
+        var markerKotte = new OpenLayers.Marker(
+          new OpenLayers.LonLat(79.9186, 6.8867).transform(wgs84, mercator)
+        );
+        citiesLayer.addMarker(markerKotte);
+
+        map.setCenter(
+          new OpenLayers.LonLat(lon, lat).transform(wgs84, mercator),
+          zoom
+        );
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <div id="map"></div>
+  </body>
+</html>
