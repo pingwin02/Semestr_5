@@ -1,12 +1,14 @@
 <article *ngIf="product">
-  <header><h2>{{product.name}}</h2></header>
+  <header><h2>{{ product.name }}</h2></header>
 
   <div class="container">
     <div class="row">
-      <p>ID: <strong>{{product.id}}</strong></p>
-      <p>Name: <strong>{{product.name}}</strong></p>
-      <p>Weight: <strong>{{product.weight}}</strong></p>
-      <p>Warehouse: <strong>{{product.warehouseId}}</strong></p>
+      <div class="col">
+        <p>ID: <strong>{{ product.id }}</strong></p>
+        <p>Name: <strong>{{ product.name }}</strong></p>
+        <p>Weight: <strong>{{ product.weight }}</strong></p>
+        <p>Warehouse: <strong>{{ product.warehouseId }}</strong></p>
+      </div>
     </div>
   </div>
 </article>

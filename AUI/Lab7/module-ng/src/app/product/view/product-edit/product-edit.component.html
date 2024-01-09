@@ -2,27 +2,29 @@
   <header><h2>Edit product</h2></header>
 
   <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div>
-        <label for="name">Name: </label>
-        <input id="name" name="name" [(ngModel)]="product.name"/>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="name" class="form-label">Name: </label>
+        <input id="name" name="name" [(ngModel)]="product.name" class="form-control"/>
       </div>
-      <div>
-        <label for="name">Weight: </label>
-        <input id="weight" name="weight" [(ngModel)]="product.weight"/>
+      <div class="col">
+        <label for="weight" class="form-label">Weight: </label>
+        <input id="weight" name="weight" [(ngModel)]="product.weight" class="form-control"/>
       </div>
-      <div *ngIf="warehouses">
-        <label for="name">Warehouse: </label>
+      <div class="col" *ngIf="warehouses">
+        <label class="form-label">Warehouse: </label>
         <div *ngFor="let warehouse of warehouses.warehouses">
           <input type="radio" name="warehouse" [value]="warehouse.id" [(ngModel)]="product.warehouseId"/>
-          <label>{{warehouse.name}}</label>
+          <label>{{ warehouse.name }}</label>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <button type="submit">Update</button>
-      <button type="button" (click)="form.resetForm(original)">Reset</button>
+      <div class="col">
+        <button type="submit" class="btn btn-primary me-2">Update</button>
+        <button type="button" (click)="form.resetForm(original)" class="btn btn-secondary">Reset</button>
+      </div>
     </div>
   </form>
 </article>

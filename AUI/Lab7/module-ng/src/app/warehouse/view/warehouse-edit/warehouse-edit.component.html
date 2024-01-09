@@ -2,20 +2,22 @@
   <header><h2>Edit warehouse</h2></header>
 
   <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div>
-        <label for="name">Name: </label>
-        <input id="name" name="name" [(ngModel)]="warehouse.name"/>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="name" class="form-label">Name: </label>
+        <input id="name" name="name" [(ngModel)]="warehouse.name" class="form-control"/>
       </div>
-      <div>
-        <label for="name">Capacity: </label>
-        <input id="capacity" name="capacity" [(ngModel)]="warehouse.capacity"/>
+      <div class="col">
+        <label for="capacity" class="form-label">Capacity: </label>
+        <input id="capacity" name="capacity" [(ngModel)]="warehouse.capacity" class="form-control"/>
       </div>
     </div>
 
     <div class="row">
-      <button type="submit">Update</button>
-      <button type="button" (click)="form.resetForm(original)">Reset</button>
+      <div class="col">
+        <button type="submit" class="btn btn-primary me-2">Update</button>
+        <button type="button" (click)="form.resetForm(original)" class="btn btn-secondary">Reset</button>
+      </div>
     </div>
   </form>
 </article>

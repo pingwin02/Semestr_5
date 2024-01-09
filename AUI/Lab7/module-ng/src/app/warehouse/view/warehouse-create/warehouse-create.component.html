@@ -2,19 +2,21 @@
   <header><h2>Create warehouse</h2></header>
 
   <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div>
-        <label for="name">Name: </label>
-        <input id="name" name="name" [(ngModel)]="name"/>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="name" class="form-label">Name: </label>
+        <input id="name" name="name" [(ngModel)]="name" class="form-control"/>
       </div>
-      <div>
-        <label for="name">Capacity: </label>
-        <input id="capacity" name="capacity" [(ngModel)]="capacity"/>
+      <div class="col">
+        <label for="capacity" class="form-label">Capacity: </label>
+        <input id="capacity" name="capacity" [(ngModel)]="capacity" class="form-control"/>
       </div>
     </div>
 
     <div class="row">
-      <button type="submit">Create</button>
+      <div class="col">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
     </div>
   </form>
 </article>

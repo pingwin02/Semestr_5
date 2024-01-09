@@ -68,7 +68,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     environment: 
-        EUREKA_INSTANCE_ID: 1
+        EUREKA_INSTANCE_INSTANCE_ID: 1
         SPRING_CONFIG_IMPORT: configserver:http://module-config:8080
   module-product-2:
     container_name: module-product-2
@@ -77,7 +77,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     environment: 
-        EUREKA_INSTANCE_ID: 2
+        EUREKA_INSTANCE_INSTANCE_ID: 2
         SPRING_CONFIG_IMPORT: configserver:http://module-config:8080
   module-warehouse:
     container_name: module-warehouse

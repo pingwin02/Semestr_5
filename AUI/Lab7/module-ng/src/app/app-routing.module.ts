@@ -16,27 +16,27 @@ const routes: Routes = [
   },
   {
     component: WarehouseCreateComponent,
-    path: "warehouse/create",
+    path: "warehouses/create",
   },
   {
     component: WarehouseEditComponent,
-    path: "warehouse/:uuid/edit",
+    path: "warehouses/:uuid/edit",
   },
   {
     component: WarehouseViewComponent,
-    path: "warehouse/:uuid",
+    path: "warehouses/:uuid",
   },
   {
     component: ProductCreateComponent,
-    path: "warehouse/:uuid/product/create",
+    path: "warehouses/:uuid/products/create",
   },
   {
     component: ProductViewComponent,
-    path: "warehouse/:uuid/product/:id",
+    path: "warehouses/:uuid/products/:id",
   },
   {
     component: ProductEditComponent,
-    path: "warehouse/:uuid/product/:id/edit",
+    path: "warehouses/:uuid/products/:id/edit",
   },
   {
     path: "",

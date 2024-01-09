@@ -38,7 +38,7 @@ export class ProductCreateComponent implements OnInit {
     };
 
     this.service.createProduct(product).subscribe(() =>
-      this.router.navigate(['/warehouse', this.warehouseId])
+      this.router.navigate(['/warehouses', this.warehouseId])
     );
   }
 }

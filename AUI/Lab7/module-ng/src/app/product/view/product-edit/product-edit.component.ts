@@ -46,7 +46,7 @@ export class ProductEditComponent implements OnInit {
 
   onSubmit(): void {
     this.service.updateProduct(this.uuid!, this.product!).subscribe(() =>
-      this.router.navigate(['/warehouse', this.product!.warehouseId]));
+      this.router.navigate(['/warehouses', this.product!.warehouseId]));
   }
 
 }

@@ -2,24 +2,21 @@
   <header><h2>Create product</h2></header>
 
   <form class="container" #form="ngForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div>
-        <label for="name">Name: </label>
-        <input id="name" name="name" [(ngModel)]="name"/>
+    <div class="row mb-3">
+      <div class="col">
+        <label for="name" class="form-label">Name: </label>
+        <input id="name" name="name" [(ngModel)]="name" class="form-control"/>
       </div>
-      <div>
-        <label for="name">Weight: </label>
-        <input id="weight" name="weight" [(ngModel)]="weight"/>
-      </div>
-      <div>
-        <label for="name">Warehouse: </label>
-        <input type="radio" name="warehouse" [value]="warehouseId" [(ngModel)]="warehouseId"/>
-        <label>{{warehouseId}}</label>
+      <div class="col">
+        <label for="weight" class="form-label">Weight: </label>
+        <input id="weight" name="weight" [(ngModel)]="weight" class="form-control"/>
       </div>
     </div>
 
     <div class="row">
-      <button type="submit">Create</button>
+      <div class="col">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
     </div>
   </form>
 </article>
