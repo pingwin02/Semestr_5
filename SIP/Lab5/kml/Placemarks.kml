@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+	<Document>
+		<name>Placemarks</name>
+		<description>KML file</description>
+		<Placemark>
+			<name>Chełm-Więckowskiego</name>
+			<description>Przystanek autobusowy</description>
+			<Point>
+				<coordinates>18.615823758289107,54.333993740323905</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Żabka</name>
+			<description>Sklep spozywczo-monopolowy</description>
+			<Point>
+				<coordinates>18.615992812632022,54.33362266515343</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Pasaż Chełmski</name>
+			<description>Centrum Handlowe</description>
+			<Point>
+				<coordinates>18.612322575484423,54.33680419587668</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Zbiornik Madalińskiego</name>
+			<description>Zbiornik Retencyjny</description>
+			<Point>
+				<coordinates>18.606710469855223,54.33333614322234</coordinates>
+			</Point>
+		</Placemark>
+		<Placemark>
+			<name>Galeria Chełm</name>
+			<description>Galeria handlowa</description>
+			<Point>
+				<coordinates>18.620496942273387,54.33643469916191</coordinates>
+			</Point>
+		</Placemark>
+	</Document>
+</kml>

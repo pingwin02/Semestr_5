@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>KML</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css"
+      type="text/css"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      .map {
+        width: 100%;
+        height: 800px;
+      }
+
+      .ol-popup {
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #cccccc;
+        bottom: 12px;
+        left: -50px;
+        min-width: 280px;
+      }
+
+      .ol-popup:after,
+      .ol-popup:before {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .ol-popup:after {
+        border-top-color: white;
+        border-width: 10px;
+        left: 48px;
+        margin-left: -10px;
+      }
+
+      .ol-popup:before {
+        border-top-color: #cccccc;
+        border-width: 11px;
+        left: 48px;
+        margin-left: -11px;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+    <div id="info">&nbsp;</div>
+    <div id="info2"></div>
+    <div id="popup" class="ol-popup"></div>
+    <input id="lonbox" type="text" />
+    <input id="latbox" type="text" />
+
+    <script type="text/javascript">
+      var osm = new ol.layer.Tile({
+        source: new ol.source.OSM(),
+      });
+
+      var map = new ol.Map({
+        layers: [osm],
+        target: document.getElementById("map"),
+        view: new ol.View({
+          center: ol.proj.fromLonLat([18.64542, 54.34766]),
+          zoom: 15,
+        }),
+      });
+
+      map.on("singleclick", function (event) {
+        var coordinates = map.getEventCoordinate(event.originalEvent);
+        var lonlat = ol.proj.toLonLat(coordinates);
+        document.getElementById("lonbox").value = lonlat[0];
+        document.getElementById("latbox").value = lonlat[1];
+      });
+
+      var kmlLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          url: "kml/Placemarks.kml",
+          format: new ol.format.KML(),
+        }),
+      });
+      map.addLayer(kmlLayer);
+
+      var polylineLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          url: "kml/Polylines.kml",
+          format: new ol.format.KML(),
+        }),
+      });
+      map.addLayer(polylineLayer);
+
+      var polygonLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          url: "kml/Polygons.kml",
+          format: new ol.format.KML(),
+        }),
+      });
+      map.addLayer(polygonLayer);
+
+      map.on("singleclick", function (event) {
+        var coordinates = map.getEventCoordinate(event.originalEvent);
+        coordinates = ol.proj.toLonLat(coordinates);
+        // document.getElementById("info2").innerHTML +=
+        //   coordinates[0] + "," + coordinates[1] + ",0<br>";
+        simpleReverseGeocoding(coordinates[0], coordinates[1]);
+      });
+
+      var popupBody = document.getElementById("popup");
+      var popup = new ol.Overlay({
+        element: popupBody,
+      });
+      map.addOverlay(popup);
+
+      function simpleReverseGeocoding(lon, lat) {
+        var addr =
+          "https://nominatim.openstreetmap.org/reverse?format=json&lon=" +
+          lon +
+          "&lat=" +
+          lat;
+        fetch(addr)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (json) {
+            var coordinates = ol.proj.fromLonLat([lon, lat]);
+            popup.setPosition(coordinates);
+            document.getElementById("popup").innerHTML = json.display_name;
+          });
+      }
+
+      map.on("pointermove", function (evt) {
+        if (evt.dragging) {
+          return;
+        }
+        var pixel = map.getEventPixel(evt.originalEvent);
+        displayFeatureInfo(pixel);
+      });
+
+      var displayFeatureInfo = function (pixel) {
+        var features = [];
+        map.forEachFeatureAtPixel(pixel, function (feature) {
+          features.push(feature);
+        });
+        if (features.length > 0) {
+          var info = [];
+          var i, ii;
+          for (i = 0, ii = features.length; i < ii; ++i) {
+            info.push(features[i].get("name"));
+          }
+          document.getElementById("info").innerHTML =
+            info.join(", ") || "(unknown)";
+          map.getTarget().style.cursor = "pointer";
+        } else {
+          document.getElementById("info").innerHTML = "&nbsp;";
+          map.getTarget().style.cursor = "";
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml
+	xmlns="http://earth.google.com/kml/2.1">
+	<Document>
+		<name>Polygons</name>
+		<description>A Simple Polygon</description>
+		<Style id="bluePoly">
+			<PolyStyle>
+				<!-- Opacity, Blue, Green, Red -->
+				<color>ffff0000</color>
+				<fill>1</fill>
+				<outline>1</outline>
+			</PolyStyle>
+		</Style>
+		<Placemark>
+			<name>Budynek Nowego Eti</name>
+			<styleUrl>#bluePoly</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<extrude>1</extrude>
+						<altitudeMode>relativeToGround</altitudeMode>
+						<coordinates>
+							<!-- longitude, latitude, altitude (above sea level) -->
+              18.612734345787555,54.3713374539617,100
+              18.612642533256622,54.371549159024,100
+              18.61272095646013,54.37170849421946,100
+              18.61300213233611,54.37185891499047,100
+              18.612752463720376,54.37201942529896,100
+              18.612473200605457,54.371870119341565,100
+              18.612199675773724,54.37183223565407,100
+              18.611840076694236,54.37189686074697,100
+              18.61172722379163,54.37168515747726,100
+              18.612092561154302,54.371616075121494,100
+              18.61228383726041,54.371499080544254,100
+              18.612364173224975,54.371286260982316,100
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Document>
+</kml>
