@@ -12,21 +12,21 @@
 		</Placemark>
 		<Placemark>
 			<name>Żabka</name>
-			<description>Sklep spozywczo-monopolowy</description>
+			<description>Sklep spożywczo-monopolowy</description>
 			<Point>
 				<coordinates>18.615992812632022,54.33362266515343</coordinates>
 			</Point>
 		</Placemark>
 		<Placemark>
 			<name>Pasaż Chełmski</name>
-			<description>Centrum Handlowe</description>
+			<description>Centrum handlowe</description>
 			<Point>
 				<coordinates>18.612322575484423,54.33680419587668</coordinates>
 			</Point>
 		</Placemark>
 		<Placemark>
 			<name>Zbiornik Madalińskiego</name>
-			<description>Zbiornik Retencyjny</description>
+			<description>Zbiornik retencyjny</description>
 			<Point>
 				<coordinates>18.606710469855223,54.33333614322234</coordinates>
 			</Point>
